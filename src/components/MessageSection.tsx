@@ -1,12 +1,52 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion, useInView } from "motion/react";
+import { motion, useInView, AnimatePresence } from "motion/react";
 import { Sparkles, Heart } from "lucide-react";
 import { triggerSparkleSound } from "./AudioPlayer";
+
+interface HeartParticle {
+  id: number;
+  x: number;
+  scale: number;
+  duration: number;
+  emoji: string;
+  rotation: number;
+  xOffset: number;
+}
 
 export const MessageSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.4 });
   const [typedText, setTypedText] = useState("");
+  const [showerHearts, setShowerHearts] = useState<HeartParticle[]>([]);
+  const [reactCount, setReactCount] = useState(0);
+
+  const handleHeartReact = () => {
+    triggerSparkleSound();
+    setReactCount((prev) => prev + 1);
+
+    const newHearts: HeartParticle[] = [];
+    const emojis = ["❤️", "💖", "💝", "💗", "💕", "💘", "🌹", "🫶", "✨", "😍", "🥰"];
+    const batchId = Date.now();
+
+    for (let i = 0; i < 18; i++) {
+      newHearts.push({
+        id: batchId + i,
+        x: 10 + Math.random() * 80, // distribute horizontal starting points
+        scale: 0.6 + Math.random() * 1.0,
+        duration: 2.2 + Math.random() * 1.6,
+        emoji: emojis[Math.floor(Math.random() * emojis.length)],
+        rotation: (Math.random() - 0.5) * 60,
+        xOffset: (Math.random() - 0.5) * 60,
+      });
+    }
+
+    setShowerHearts((prev) => [...prev, ...newHearts]);
+
+    // Clean up to keep DOM clean
+    setTimeout(() => {
+      setShowerHearts((prev) => prev.filter((h) => h.id > batchId));
+    }, 4500);
+  };
   const fullMessage = "Happy Birthday Sweta! Wishing you a day filled with love, laughter, and all your favorite things. May this year bring you endless happiness, gorgeous dreams, and beautiful memories. You are a absolute star! ✨";
 
   useEffect(() => {
@@ -147,9 +187,72 @@ export const MessageSection: React.FC = () => {
                 Your Biggest Fan
               </p>
             </motion.div>
+
+            {/* Floating 'Heart React' Reaction Button */}
+            <motion.button
+              whileHover={{ scale: 1.15, rotate: [0, -6, 6, -6, 0] }}
+              whileTap={{ scale: 0.85 }}
+              onClick={handleHeartReact}
+              className="absolute bottom-4 right-4 md:bottom-6 md:right-6 bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 hover:from-pink-600 hover:to-rose-600 text-white rounded-full p-3.5 shadow-lg shadow-pink-500/20 border border-white/40 flex items-center gap-1.5 z-30 group cursor-pointer focus:outline-none focus:ring-4 focus:ring-pink-300/50"
+              aria-label="Heart React"
+            >
+              <Heart className="w-5 h-5 fill-current animate-pulse text-white group-hover:scale-110 transition-transform" />
+              <AnimatePresence mode="wait">
+                {reactCount > 0 && (
+                  <motion.span
+                    key={reactCount}
+                    initial={{ scale: 0.5, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.5, opacity: 0 }}
+                    className="text-xs font-bold font-mono tracking-wider bg-white/20 px-2 py-0.5 rounded-full"
+                  >
+                    {reactCount}
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </motion.button>
           </motion.div>
         </div>
       </div>
+
+      {/* FLOATING REACT HEARTS SHOWER */}
+      <div className="absolute inset-0 pointer-events-none z-30 overflow-hidden">
+        <AnimatePresence>
+          {showerHearts.map((heart) => (
+            <motion.div
+              key={heart.id}
+              initial={{ 
+                x: `${heart.x}%`, 
+                y: "110%", 
+                scale: heart.scale * 0.3, 
+                opacity: 0, 
+                rotate: heart.rotation 
+              }}
+              animate={{ 
+                y: "-10%", 
+                opacity: [0, 1, 1, 0.7, 0],
+                x: [
+                  `${heart.x}%`, 
+                  `${heart.x + heart.xOffset / 5}%`, 
+                  `${heart.x - heart.xOffset / 5}%`,
+                  `${heart.x + heart.xOffset / 10}%`
+                ],
+                scale: [heart.scale * 0.6, heart.scale, heart.scale * 1.1, heart.scale * 0.8],
+                rotate: heart.rotation + (heart.xOffset > 0 ? 120 : -120)
+              }}
+              exit={{ opacity: 0 }}
+              transition={{
+                duration: heart.duration,
+                ease: "easeOut"
+              }}
+              className="absolute text-3xl select-none"
+            >
+              {heart.emoji}
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </div>
     </section>
+
   );
 };
