@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Heart, Sparkles, Gift, HelpCircle, Send, Award, Check, RefreshCw, Smartphone, MapPin } from "lucide-react";
 import { triggerSparkleSound } from "./AudioPlayer";
+import { SparklerCanvas } from "./SparklerCanvas";
 
 interface Coupon {
   id: number;
@@ -139,7 +140,7 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
 let heartIdCounter = 0;
 
 export const LoveHubSection: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<"coupons" | "reasons" | "quiz" | "ldr">("coupons");
+  const [activeTab, setActiveTab] = useState<"coupons" | "reasons" | "quiz" | "ldr" | "sparkler">("coupons");
   
   // Coupons State
   const [revealedCoupons, setRevealedCoupons] = useState<number[]>([]);
@@ -345,6 +346,16 @@ export const LoveHubSection: React.FC = () => {
             }`}
           >
             ✈️ LDR Love Sender
+          </button>
+          <button
+            onClick={() => { triggerSparkleSound(); setActiveTab("sparkler"); }}
+            className={`px-4 sm:px-6 py-2.5 rounded-xl font-sans text-xs sm:text-sm font-bold tracking-wide transition-all ${
+              activeTab === "sparkler"
+                ? "bg-pink-500 text-white shadow-md scale-102"
+                : "text-pink-600 hover:bg-pink-50 hover:text-pink-700"
+            }`}
+          >
+            ✨ Virtual Sparkler
           </button>
         </div>
 
@@ -709,6 +720,20 @@ export const LoveHubSection: React.FC = () => {
                     <span>{sendingKiss ? "Blowing Kiss..." : "Blow Virtual Kiss!"}</span>
                   </motion.button>
                 </div>
+              </motion.div>
+            )}
+
+            {/* TAB 5: SPARKER CANVAS DRAWER */}
+            {activeTab === "sparkler" && (
+              <motion.div
+                key="tab-sparkler"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.4 }}
+                className="w-full"
+              >
+                <SparklerCanvas />
               </motion.div>
             )}
 
