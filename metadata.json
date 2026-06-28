@@ -1,0 +1,6 @@
+{
+  "name": "Sweta's Birthday Celebration",
+  "description": "An extremely premium, highly animated single-page luxury interactive birthday celebration website for Sweta.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

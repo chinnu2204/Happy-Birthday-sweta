@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Pacifico", cursive;
+  --font-sans: "Quicksand", sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+}
+
+/* Custom styles for high quality aesthetics */
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    background-color: #fff5f8;
+    color: #2d1b22;
+    overflow-x: hidden;
+  }
+}
+
+/* Glassmorphism utility classes */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 77, 141, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(255, 77, 141, 0.1);
+}
+
+.glass-panel-dark {
+  background: rgba(45, 27, 34, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 77, 141, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Artistic Flair Theme Specifics */
+.luxury-text {
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 77, 141, 0.2);
+  border-radius: 24px;
+}
+
+.gradient-hero {
+  background: linear-gradient(135deg, #FF4D8D 0%, #FFD700 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.floating-balloon {
+  position: absolute;
+  width: 40px;
+  height: 50px;
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+}
+
+.polaroid-stack {
+  position: relative;
+  height: 200px;
+}
+
+.polaroid {
+  background: white;
+  padding: 8px 8px 24px 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border: 1px solid #f1f1f1;
+  transform: rotate(-5deg);
+  position: absolute;
+}
+
+.polaroid-2 {
+  transform: rotate(5deg);
+  left: 30px;
+  top: 10px;
+}
+
+.gift-box {
+  width: 60px;
+  height: 60px;
+  background: #E63950;
+  position: relative;
+  border-radius: 4px;
+}
+
+.gift-lid {
+  position: absolute;
+  top: -10px;
+  left: -5px;
+  width: 70px;
+  height: 15px;
+  background: #FFD700;
+  border-radius: 2px;
+}
+
+.timeline-dot {
+  width: 14px;
+  height: 14px;
+  background: #FF4D8D;
+  border: 3px solid #FFD700;
+  border-radius: 50%;
+}
+
+/* Glow effects */
+.glow-pink {
+  box-shadow: 0 0 20px rgba(255, 77, 141, 0.6);
+}
+
+.glow-gold {
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #fff5f8;
+}
+::-webkit-scrollbar-thumb {
+  background: #ff4d8d;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #e63950;
+}
+
