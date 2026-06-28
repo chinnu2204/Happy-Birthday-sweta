@@ -47,21 +47,29 @@ export const MessageSection: React.FC = () => {
       setShowerHearts((prev) => prev.filter((h) => h.id > batchId));
     }, 4500);
   };
-  const fullMessage = "Happy Birthday Sweta! Wishing you a day filled with love, laughter, and all your favorite things. May this year bring you endless happiness, gorgeous dreams, and beautiful memories. You are a absolute star! ✨";
+  const fullMessage = "Happy Birthday Sweta! Wishing you a day filled with love, laughter, and all your favorite things. May this year bring you endless happiness, gorgeous dreams, and beautiful memories. You are an absolute star! ✨";
 
   useEffect(() => {
     if (!isInView) return;
 
+    setTypedText("");
+    let isCancelled = false;
     let index = 0;
-    const interval = setInterval(() => {
-      setTypedText((prev) => prev + fullMessage.charAt(index));
-      index++;
-      if (index >= fullMessage.length) {
-        clearInterval(interval);
-      }
-    }, 45); // Warm typed text speed
 
-    return () => clearInterval(interval);
+    const typeNextChar = () => {
+      if (isCancelled) return;
+      if (index < fullMessage.length) {
+        setTypedText(fullMessage.substring(0, index + 1));
+        index++;
+        setTimeout(typeNextChar, 35); // Adjusted slightly for an elegant, snappy typing speed
+      }
+    };
+
+    typeNextChar();
+
+    return () => {
+      isCancelled = true;
+    };
   }, [isInView]);
 
   return (

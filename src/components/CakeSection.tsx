@@ -133,20 +133,25 @@ export const CakeSection: React.FC = () => {
       const checkVolume = () => {
         if (!analyserRef.current || !dataArrayRef.current) return;
         
-        analyserRef.current.getByteFrequencyData(dataArrayRef.current);
+        // Use time domain data to calculate signal amplitude, which is extremely robust for detecting air blows
+        analyserRef.current.getByteTimeDomainData(dataArrayRef.current);
         
-        // Calculate average volume
         let sum = 0;
         for (let i = 0; i < dataArrayRef.current.length; i++) {
-          sum += dataArrayRef.current[i];
+          // 128 is the neutral/silent level in 8-bit PCM data. Calculate deviation from center.
+          sum += Math.abs(dataArrayRef.current[i] - 128);
         }
-        const average = sum / dataArrayRef.current.length;
-        const normalized = Math.min(Math.round((average / 128) * 100), 100);
+        const averageDeviation = sum / dataArrayRef.current.length;
+        
+        // averageDeviation ranges from 0 (silence) to 127 (maximum volume).
+        // A direct puff or blow produces a very large average deviation (> 10-15).
+        // Let's normalize it to a 0-100 range where 18+ average deviation is 100% volume.
+        const normalized = Math.min(Math.round((averageDeviation / 18) * 100), 100);
         
         setVolumeLevel(normalized);
 
-        // Blow out candles if volume exceeds threshold
-        if (normalized > 35) { // Threshold for blowing
+        // Blow out candles if volume exceeds threshold (35%)
+        if (normalized > 35) {
           blowCandles();
         } else {
           animationFrameRef.current = requestAnimationFrame(checkVolume);

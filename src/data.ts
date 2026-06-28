@@ -4,38 +4,38 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   {
     id: 1,
     url: "https://uploads.onecompiler.io/446vxgds2/1782653945819/243017.jpg",
-    caption: "Your infectious laugh that brightens up the room ✨",
+    caption: "Your infectious laugh that brightens up our video calls ✨",
     category: "Smiles"
   },
   {
     id: 2,
     url: "https://uploads.onecompiler.io/446vxgds2/1782653929149/243008.jpg",
-    caption: "Blowing out candles, making sweet wishes 🎂",
+    caption: "Blowing out candles, making sweet distance wishes 🎂",
     category: "Celebration"
   },
   {
     id: 3,
     url: "https://uploads.onecompiler.io/446vxgds2/1782653916309/243002.jpg",
-    caption: "Chasing golden hours and infinite dreams 🌅",
+    caption: "Dreaming of the day we chase golden sunsets together 🌅",
     category: "Sunset Vibes"
   },
   {
     id: 4,
     url: "https://uploads.onecompiler.io/446vxgds2/1782653907366/242996.jpg",
-    caption: "The elegant grace you bring to every single moment 🌸",
+    caption: "The elegant grace you bring to every single picture you send 🌸",
     category: "Elegant"
   },
   {
     id: 5,
     url: "https://uploads.onecompiler.io/446vxgds2/1782653897248/243020.jpg",
-    caption: "Capturing cozy coffee dates and deep thoughts ☕",
-    category: "Cozy"
+    caption: "Cozy virtual tea dates and deep late-night thoughts ☕",
+    category: "Virtual Dates"
   },
   {
     id: 6,
     url: "https://uploads.onecompiler.io/446vxgds2/44mve5kfs/129349.jpg",
-    caption: "Dance floor energy and endless laughter 💃",
-    category: "Party Time"
+    caption: "Dancing on video calls together with endless laughter 📱💃",
+    category: "Screen Time"
   }
 ];
 
@@ -44,21 +44,21 @@ export const MEMORY_ITEMS: MemoryItem[] = [
     id: 1,
     date: "Jan 12 • The First Hello",
     title: "Where it all began",
-    description: "The stars aligned and a beautiful connection sparked. One conversation that quickly turned into late-night laughters.",
+    description: "The stars aligned and a beautiful connection sparked across the distance. One text that quickly turned into infinite late-night laughs.",
     url: "https://uploads.onecompiler.io/446vxgds2/1782653945819/243017.jpg"
   },
   {
     id: 2,
-    date: "May 25 • Summer Adventure",
-    title: "Chasing Neon Lights",
-    description: "Ice creams melting, bright carnival lights, and riding the ferris wheel under the starry night sky. Unforgettable vibes!",
+    date: "May 25 • Virtual Movie Night",
+    title: "Synchronized Screens",
+    description: "Sipping our favorite drinks miles apart, hitting play at the exact same millisecond, and laughing out loud over call.",
     url: "https://uploads.onecompiler.io/446vxgds2/1782653916309/243002.jpg"
   },
   {
     id: 3,
-    date: "Oct 08 • Autumn Serenade",
-    title: "Warm Fire & Cold Nights",
-    description: "Wrapped in oversized blankets, sipping hot cocoa, listening to acoustic music, and talking about the universe.",
+    date: "Oct 08 • Midnight Harmony",
+    title: "Distance Can't Stop Us",
+    description: "Wrapped in our own blankets, sharing playlists, and falling asleep on voice calls while dreaming of the day we meet.",
     url: "https://uploads.onecompiler.io/446vxgds2/44mve5kfs/129349.jpg"
   }
 ];
