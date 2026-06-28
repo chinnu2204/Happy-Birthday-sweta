@@ -96,18 +96,18 @@ export const FireworkFinale: React.FC = () => {
   };
 
   const createParticles = (x: number, y: number) => {
-    const particleCount = 35;
+    const particleCount = 22;
     const hue = Math.random() * 360;
 
     for (let i = 0; i < particleCount; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const speed = Math.random() * 6 + 1;
+      const speed = Math.random() * 5 + 1;
       const friction = 0.95;
       const gravity = 0.98;
       const decay = Math.random() * 0.02 + 0.015;
 
       const coordinates: [number, number][] = [];
-      for (let j = 0; j < 5; j++) {
+      for (let j = 0; j < 3; j++) {
         coordinates.push([x, y]);
       }
 
@@ -115,7 +115,7 @@ export const FireworkFinale: React.FC = () => {
         x,
         y,
         coordinates,
-        coordinateCount: 5,
+        coordinateCount: 3,
         angle,
         speed,
         friction,
@@ -208,7 +208,7 @@ export const FireworkFinale: React.FC = () => {
       }
 
       // Random auto-fireworks
-      if (Math.random() < 0.04) {
+      if (Math.random() < 0.02) {
         triggerAutoFirework(canvas);
       }
 

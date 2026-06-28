@@ -28,15 +28,15 @@ export const MessageSection: React.FC = () => {
     const emojis = ["❤️", "💖", "💝", "💗", "💕", "💘", "🌹", "🫶", "✨", "😍", "🥰"];
     const batchId = Date.now();
 
-    for (let i = 0; i < 18; i++) {
+    for (let i = 0; i < 12; i++) {
       newHearts.push({
         id: batchId + i,
         x: 10 + Math.random() * 80, // distribute horizontal starting points
-        scale: 0.6 + Math.random() * 1.0,
-        duration: 2.2 + Math.random() * 1.6,
+        scale: 0.6 + Math.random() * 0.8,
+        duration: 2.0 + Math.random() * 1.4,
         emoji: emojis[Math.floor(Math.random() * emojis.length)],
-        rotation: (Math.random() - 0.5) * 60,
-        xOffset: (Math.random() - 0.5) * 60,
+        rotation: (Math.random() - 0.5) * 50,
+        xOffset: (Math.random() - 0.5) * 50,
       });
     }
 

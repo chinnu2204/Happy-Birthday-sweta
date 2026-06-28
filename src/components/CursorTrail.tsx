@@ -35,9 +35,13 @@ export const CursorTrail: React.FC = () => {
 
     const colors = ["#FF4D8D", "#FFD700", "#E63950", "#9B5DE5", "#FF65A3"];
 
+    let lastX = 0;
+    let lastY = 0;
+    let lastTime = 0;
+
     const createParticle = (x: number, y: number) => {
       const type = Math.random() > 0.4 ? "sparkle" : "heart";
-      const size = Math.random() * 12 + 6;
+      const size = Math.random() * 10 + 5;
       const color = colors[Math.floor(Math.random() * colors.length)];
       
       particlesRef.current.push({
@@ -49,19 +53,34 @@ export const CursorTrail: React.FC = () => {
         alpha: 1,
         speedX: (Math.random() - 0.5) * 1.5,
         speedY: -Math.random() * 1.5 - 0.5,
-        decay: Math.random() * 0.015 + 0.01,
+        decay: Math.random() * 0.02 + 0.015,
         rotation: Math.random() * Math.PI * 2,
         rotationSpeed: (Math.random() - 0.5) * 0.05,
       });
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      createParticle(e.clientX, e.clientY);
+      const now = Date.now();
+      const dist = Math.hypot(e.clientX - lastX, e.clientY - lastY);
+      if (dist > 18 || now - lastTime > 40) {
+        createParticle(e.clientX, e.clientY);
+        lastX = e.clientX;
+        lastY = e.clientY;
+        lastTime = now;
+      }
     };
 
     const handleTouchMove = (e: TouchEvent) => {
       if (e.touches.length > 0) {
-        createParticle(e.touches[0].clientX, e.touches[0].clientY);
+        const touch = e.touches[0];
+        const now = Date.now();
+        const dist = Math.hypot(touch.clientX - lastX, touch.clientY - lastY);
+        if (dist > 14 || now - lastTime > 40) {
+          createParticle(touch.clientX, touch.clientY);
+          lastX = touch.clientX;
+          lastY = touch.clientY;
+          lastTime = now;
+        }
       }
     };
 
@@ -122,8 +141,6 @@ export const CursorTrail: React.FC = () => {
         ctx.save();
         ctx.globalAlpha = p.alpha;
         ctx.fillStyle = p.color;
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = p.color;
 
         ctx.translate(p.x, p.y);
         ctx.rotate(p.rotation);

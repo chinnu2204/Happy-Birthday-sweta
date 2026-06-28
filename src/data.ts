@@ -4,7 +4,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   {
     id: 1,
     url: "https://uploads.onecompiler.io/446vxgds2/1782653945819/243017.jpg",
-    caption: "Your infectious laugh that brightens up our video calls ✨",
+    caption: "Your infectious laugh that shines through every photo you send ✨",
     category: "Smiles"
   },
   {
@@ -22,19 +22,19 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   {
     id: 4,
     url: "https://uploads.onecompiler.io/446vxgds2/1782653907366/242996.jpg",
-    caption: "The elegant grace you bring to every single picture you send 🌸",
+    caption: "The elegant grace you bring to every single picture you share 🌸",
     category: "Elegant"
   },
   {
     id: 5,
     url: "https://uploads.onecompiler.io/446vxgds2/1782653897248/243020.jpg",
-    caption: "Cozy virtual tea dates and deep late-night thoughts ☕",
+    caption: "Cozy virtual tea time chats and deep late-night texts ☕",
     category: "Virtual Dates"
   },
   {
     id: 6,
     url: "https://uploads.onecompiler.io/446vxgds2/44mve5kfs/129349.jpg",
-    caption: "Dancing on video calls together with endless laughter 📱💃",
+    caption: "Sharing songs and endless sweet chat threads 📱🎵",
     category: "Screen Time"
   }
 ];
@@ -44,21 +44,21 @@ export const MEMORY_ITEMS: MemoryItem[] = [
     id: 1,
     date: "Jan 12 • The First Hello",
     title: "Where it all began",
-    description: "The stars aligned and a beautiful connection sparked across the distance. One text that quickly turned into infinite late-night laughs.",
+    description: "The stars aligned and a beautiful connection sparked across the distance. One text that quickly turned into infinite late-night laughs and voice notes.",
     url: "https://uploads.onecompiler.io/446vxgds2/1782653945819/243017.jpg"
   },
   {
     id: 2,
     date: "May 25 • Virtual Movie Night",
     title: "Synchronized Screens",
-    description: "Sipping our favorite drinks miles apart, hitting play at the exact same millisecond, and laughing out loud over call.",
+    description: "Watching our favorite movies miles apart, texting each other at the exact same moment, and sharing the exact same thoughts.",
     url: "https://uploads.onecompiler.io/446vxgds2/1782653916309/243002.jpg"
   },
   {
     id: 3,
     date: "Oct 08 • Midnight Harmony",
     title: "Distance Can't Stop Us",
-    description: "Wrapped in our own blankets, sharing playlists, and falling asleep on voice calls while dreaming of the day we meet.",
+    description: "Wrapped in our own blankets, sharing special playlists, and listening to each other's voice notes while dreaming of the day we finally meet.",
     url: "https://uploads.onecompiler.io/446vxgds2/44mve5kfs/129349.jpg"
   }
 ];

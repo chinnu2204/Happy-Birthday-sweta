@@ -14,6 +14,7 @@ import { MessageSection } from "./components/MessageSection";
 import { CakeSection } from "./components/CakeSection";
 import { GiftBoxesSection } from "./components/GiftBoxesSection";
 import { TimelineSection } from "./components/TimelineSection";
+import { LoveHubSection } from "./components/LoveHubSection";
 import { FireworkFinale } from "./components/FireworkFinale";
 import { Footer } from "./components/Footer";
 
@@ -60,6 +61,9 @@ export default function App() {
 
               {/* Section 6: Love timeline & Meter */}
               <TimelineSection />
+
+              {/* Section 6.5: Love Hub Interactive Playground */}
+              <LoveHubSection />
 
               {/* Section 7: Fireworks finale wishes board */}
               <FireworkFinale />
